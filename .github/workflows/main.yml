@@ -1,0 +1,30 @@
+name: React CI/CD
+
+on:
+ push:
+  branches: ["main"]
+ pull_request:
+  branches: ["main"] 
+
+jobs:
+ buld-and-test:
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with: 
+       node-version: '20.x'
+
+    - name: Install dependencies
+      run: npm Install
+
+    - name: Build react app
+      run: npm run build
+
+    - name: Run tests
+      run: npm run test          
+
